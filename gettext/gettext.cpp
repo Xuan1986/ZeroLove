@@ -30,7 +30,7 @@ long search_for_entry (int fd) {
 	_lseek(fd, 0, SEEK_SET);
 	char *title = new char[TITLE_LENGTH];
 	_read(fd, title, TITLE_LENGTH);
-	if (!memcmp(title, "SYS4415", 7)) {
+	if (memcmp(title, "SYS4415", 7) == 0 || memcmp(title, "SYS4424", 7) == 0) {
 		unsigned long dataunit;
 		while (_read(fd, &dataunit, sizeof(dataunit)) != 0) {
 			if (dataunit < 0xFFFFFFFF
